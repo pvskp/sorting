@@ -20,43 +20,39 @@ def max_heapify(arr: list[int], n: int, current: int) -> None:
     left_child = left(current)  # indice left_child
     right_child = right(current)  # indice right_child
 
-    if left_child < n and right_child < n:
-        print(f"current: {current} left: {left_child} right: {right_child}")
-        print(
-            f"arr[{current}]: {arr[current]} arr[{left_child}]: {arr[left_child]} arr[{right_child}]: {arr[right_child]}"
-        )
-
     bigger: int = current
 
-    if left_child < n and arr[left_child] > arr[current]:
+    if left_child < n and arr[left_child] > arr[bigger]:
         bigger = left_child
 
-    if right_child < n and arr[right_child] > arr[current]:
+    if right_child < n and arr[right_child] > arr[bigger]:
         bigger = right_child
 
     if bigger != current:
-        print(f"swapping index {current} with {bigger}")
-        print(f"{arr[current]} <-> {arr[bigger]}")
         swap(arr, current, bigger)
-        print(f"current array is {arr}")
         max_heapify(arr, n, bigger)
 
 
 def build_max_heap(arr):
     n = len(arr)
     # Começa do último nó pai até a raiz (índice 0)
-    print(f"last parent: arr[{n//2 - 1}]")
     for i in range(n // 2 - 1, -1, -1):
-        print(f"i = {i}")
         max_heapify(arr, n, i)
 
 
-def main() -> None:
-    arr: list[int] = [2, 1, 3, 6, 7, 10, 22]
-    print(f"initial array {arr}")
+def heapsort(arr: list[int]):
     build_max_heap(arr)
-    print(f"final array {arr}")
-    ...
+
+    for i in range(len(arr) - 1, 0, -1):
+        swap(arr, 0, i)  # troca atual com maior elemento
+        max_heapify(arr, i, 0)
+
+
+def main() -> None:
+    arr = [10, 2222, 56, 32, 2, 5, 1, 6, 8, 8, 1, 4]
+    # build_max_heap(arr)
+    heapsort(arr)
+    print(f"sorted array: {arr}")
 
 
 if __name__ == "__main__":
