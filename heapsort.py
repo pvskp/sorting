@@ -33,14 +33,14 @@ def max_heapify(arr: list[int], n: int, current: int) -> None:
         max_heapify(arr, n, bigger)
 
 
-def build_max_heap(arr):
+def build_max_heap(arr: list[int]):
     n = len(arr)
     # Começa do último nó pai até a raiz (índice 0)
     for i in range(n // 2 - 1, -1, -1):
         max_heapify(arr, n, i)
 
 
-def heapsort(arr: list[int]):
+def heapsort(arr: list[int]) -> None:
     build_max_heap(arr)
 
     for i in range(len(arr) - 1, 0, -1):
@@ -50,7 +50,6 @@ def heapsort(arr: list[int]):
 
 def main() -> None:
     arr = [10, 2222, 56, 32, 2, 5, 1, 6, 8, 8, 1, 4]
-    # build_max_heap(arr)
     heapsort(arr)
     print(f"sorted array: {arr}")
 
