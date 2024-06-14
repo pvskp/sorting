@@ -6,6 +6,7 @@ def swap(arr: list[int], i: int, j: int) -> None:
 
 def partition(arr: list[int], start: int, end: int) -> int:
     pivot_index = end
+
     pivot = arr[pivot_index]
     i = start - 1
 
